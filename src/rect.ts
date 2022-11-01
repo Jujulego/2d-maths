@@ -34,6 +34,20 @@ export class Rect implements IRect {
     return this.t >= p.y && this.l <= p.x && this.r >= p.x && this.b <= p.y;
   }
 
+  intersect(r: IRect): Rect | null {
+    if (r.b > this.t) return null; // r is over this
+    if (r.t < this.b) return null; // r is bellow this
+    if (r.l > this.r) return null; // r is to the right of this
+    if (r.r < this.l) return null; // r is to the left of this
+
+    return new Rect({
+      t: Math.min(this.t, r.t),
+      l: Math.max(this.l, r.l),
+      r: Math.min(this.r, r.r),
+      b: Math.max(this.b, r.b),
+    });
+  }
+
   // Properties
   get tl(): Point {
     return new Point({ x: this.l, y: this.t });

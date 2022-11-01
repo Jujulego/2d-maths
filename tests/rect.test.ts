@@ -57,6 +57,55 @@ describe('Rect.contains', () => {
   });
 });
 
+describe('Rect.intersect', () => {
+  it('should return intersection between 2 rects', () => {
+    const a = rect({ t: 1, l: 0, r: 1, b: 0 });
+    const b = rect({ t: 1.5, l: 0.5, r: 1.5, b: 0.5 });
+
+    expect(a.intersect(b)).toEqual({
+      t: 1,
+      l: 0.5,
+      r: 1,
+      b: 0.5
+    });
+  });
+
+  it('should return b as b is within a', () => {
+    const a = rect({ t: 1, l: 0, r: 1, b: 0 });
+    const b = rect({ t: 0.75, l: 0.25, r: 0.75, b: 0.25 });
+
+    expect(a.intersect(b)).toEqual(b);
+  });
+
+  it('should return null as b is over a', () => {
+    const a = rect({ t: 1, l: 0, r: 1, b: 0 });
+    const b = rect({ t: 1.75, l: 0.25, r: 0.75, b: 1.25 });
+
+    expect(a.intersect(b)).toBeNull();
+  });
+
+  it('should return null as b is bellow a', () => {
+    const a = rect({ t: 1, l: 0, r: 1, b: 0 });
+    const b = rect({ t: -0.25, l: 0.25, r: 0.75, b: -0.75 });
+
+    expect(a.intersect(b)).toBeNull();
+  });
+
+  it('should return null as b is to the right of a', () => {
+    const a = rect({ t: 1, l: 0, r: 1, b: 0 });
+    const b = rect({ t: 0.75, l: 1.25, r: 1.75, b: 0.25 });
+
+    expect(a.intersect(b)).toBeNull();
+  });
+
+  it('should return null as b is to the left of a', () => {
+    const a = rect({ t: 1, l: 0, r: 1, b: 0 });
+    const b = rect({ t: 0.75, l: -0.75, r: -0.25, b: 0.25 });
+
+    expect(a.intersect(b)).toBeNull();
+  });
+});
+
 // Properties
 test('Rect.tl', () => {
   const r = rect({ t: 1, l: 0, r: 1, b: 0 });

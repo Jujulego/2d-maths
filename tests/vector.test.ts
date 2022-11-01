@@ -77,20 +77,34 @@ describe('Vector.sub', () => {
 });
 
 describe('Vector.dot', () => {
-  it('should return scalar product of two vectors', () => {
-    const v = vector(1, 2);
+  describe('with a number', () => {
+    it('should return product with a number', () => {
+      const v = vector(1, 2);
 
-    expect(v.dot({ dx: 3, dy: 4 }))
-      .toBe(11);
+      expect(v.dot(3))
+        .toEqual({ dx: 3, dy: 6 });
+    });
   });
-});
 
-describe('Vector.mul', () => {
-  it('should return product with a number', () => {
-    const v = vector(1, 2);
+  describe('with a vector', () => {
+    it('should return scalar product of two vectors', () => {
+      const v = vector(1, 2);
 
-    expect(v.mul(3))
-      .toEqual({ dx: 3, dy: 6 });
+      expect(v.dot({ dx: 3, dy: 4 }))
+        .toBe(11);
+    });
+  });
+
+  describe('with a matrix', () => {
+    it('should return product with a matrix', () => {
+      const v = vector(1, 2);
+
+      expect(v.dot({ a: 1, b: 2, c: 3, d: 4 }))
+        .toEqual({
+          dx: 7,
+          dy: 10
+        });
+    });
   });
 });
 

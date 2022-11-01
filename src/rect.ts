@@ -1,5 +1,5 @@
-import { IPoint, Point } from './point';
-import { IVector, Vector } from './vector';
+import { IPoint, point, Point } from './point';
+import { IVector, vector, Vector } from './vector';
 
 // Types
 export interface IRect {
@@ -9,6 +9,19 @@ export interface IRect {
   b: number;
 }
 
+export type RectTLRBHolderAttr<N extends string> = `${N}${'Top' | 'Left' | 'Right' | 'Bottom'}`;
+export type RectTLWHHolderAttr<N extends string> = `${N}${'Top' | 'Left' | 'Width' | 'Height'}`;
+
+export type RectTLBRHolder<N extends string> = Record<RectTLRBHolderAttr<N>, number>;
+export type RectTLWHHolder<N extends string> = Record<RectTLWHHolderAttr<N>, number>;
+
+export type RectHolder<N extends string> = RectTLBRHolder<N> | RectTLWHHolder<N>;
+
+// Utils
+export function isRectTLRBHolder<N extends string>(prefix: N, holder: RectHolder<N>): holder is RectTLBRHolder<N> {
+  return `${prefix}Bottom` in holder;
+}
+
 // Class
 export class Rect implements IRect {
   // Attributes
@@ -16,6 +29,23 @@ export class Rect implements IRect {
   l: number;
   r: number;
   b: number;
+
+  // Statics
+  static from<N extends string>(prefix: N, holder: RectHolder<N>): Rect {
+    if (isRectTLRBHolder(prefix, holder)) {
+      return new Rect({
+        t: holder[`${prefix}Top`],
+        l: holder[`${prefix}Left`],
+        r: holder[`${prefix}Right`],
+        b: holder[`${prefix}Bottom`],
+      });
+    } else {
+      return rect(
+        point(holder[`${prefix}Left`], holder[`${prefix}Top`]),
+        vector(holder[`${prefix}Width`], -holder[`${prefix}Height`])
+      );
+    }
+  }
 
   // Constructor
   constructor(r: IRect) {

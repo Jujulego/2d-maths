@@ -24,6 +24,43 @@ describe('rect', () => {
   });
 });
 
+// Statics
+describe('Rect.from', () => {
+  it('should build from tlrb holder (top left right bottom)', () => {
+    const dom = {
+      screenTop: 10,
+      screenLeft: 0,
+      screenRight: 10,
+      screenBottom: 0,
+    };
+
+    expect(Rect.from('screen', dom))
+      .toEqual({
+        t: 10,
+        l: 0,
+        r: 10,
+        b: 0
+      });
+  });
+
+  it('should build from tlwh holder (top left width height)', () => {
+    const dom = {
+      screenTop: 10,
+      screenLeft: 0,
+      screenWidth: 10,
+      screenHeight: 10,
+    };
+
+    expect(Rect.from('screen', dom))
+      .toEqual({
+        t: 10,
+        l: 0,
+        r: 10,
+        b: 0
+      });
+  });
+});
+
 // Methods
 describe('Rect.equals', () => {
   it('should return true', () => {

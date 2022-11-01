@@ -12,7 +12,7 @@
   "env": {
     "targets": [
       "defaults",
-      "node 16"
+      "maintained node versions"
     ]
   }
 }

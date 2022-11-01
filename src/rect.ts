@@ -60,8 +60,17 @@ export class Rect implements IRect {
     return this.t === r.t && this.l === r.l && this.r === r.r && this.b === r.b;
   }
 
-  contains(p: IPoint) {
-    return this.t >= p.y && this.l <= p.x && this.r >= p.x && this.b <= p.y;
+  contains(r: IRect): boolean;
+  contains(p: IPoint): boolean;
+  contains(arg: IPoint | IRect): boolean {
+    if ('x' in arg) {
+      return this.t >= arg.y && this.l <= arg.x && this.r >= arg.x && this.b <= arg.y;
+    } else {
+      return arg.t <= this.t && arg.t >= this.b
+        && arg.l <= this.r && arg.l >= this.l
+        && arg.r <= this.r && arg.r >= this.l
+        && arg.b <= this.t && arg.b >= this.b;
+    }
   }
 
   intersect(r: IRect): Rect | null {

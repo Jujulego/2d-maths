@@ -79,18 +79,36 @@ describe('Rect.equals', () => {
 });
 
 describe('Rect.contains', () => {
-  it('should return true', () => {
-    const r = rect({ t: 1, l: 0, r: 1, b: 0 });
+  describe('a Point', () => {
+    it('should return true', () => {
+      const r = rect({ t: 1, l: 0, r: 1, b: 0 });
 
-    expect(r.contains({ x: 0.5, y: 0.5 }))
-      .toBe(true);
+      expect(r.contains({ x: 0.5, y: 0.5 }))
+        .toBe(true);
+    });
+
+    it('should return false', () => {
+      const r = rect({ t: 1, l: 0, r: 1, b: 0 });
+
+      expect(r.contains({ x: 1.5, y: 0.5 }))
+        .toBe(false);
+    });
   });
 
-  it('should return false', () => {
-    const r = rect({ t: 1, l: 0, r: 1, b: 0 });
+  describe('a Rect', () => {
+    it('should return true', () => {
+      const r = rect({ t: 1, l: 0, r: 1, b: 0 });
 
-    expect(r.contains({ x: 1.5, y: 0.5 }))
-      .toBe(false);
+      expect(r.contains({ t: 0.75, l: 0.25, r: 0.75, b: 0.25 }))
+        .toBe(true);
+    });
+
+    it('should return false', () => {
+      const r = rect({ t: 1, l: 0, r: 1, b: 0 });
+
+      expect(r.contains({ t: 1.75, l: 0.25, r: 0.75, b: 0.25 }))
+        .toBe(false);
+    });
   });
 });
 

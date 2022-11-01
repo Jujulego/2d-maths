@@ -8,7 +8,11 @@
   "module": {
     "type": "es6"
   },
+  "sourceMaps": true,
   "env": {
-    "coreJs": "3.22"
+    "targets": [
+      "defaults",
+      "node 16"
+    ]
   }
 }

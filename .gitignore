@@ -8,6 +8,5 @@
 .pnp.*
 
 # Generated files
+coverage
 dist
-*.log
-*.pid

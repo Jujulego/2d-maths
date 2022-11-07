@@ -845,7 +845,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@jujulego/2d-maths@workspace:."
   dependencies:
-    "@jujulego/jill": 2.1.0-alpha.1
+    "@jujulego/jill": 2.1.0-alpha.2
     "@swc/cli": 0.1.57
     "@swc/core": 1.3.14
     "@swc/jest": 0.2.23
@@ -869,9 +869,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jujulego/jill@npm:2.1.0-alpha.1":
-  version: 2.1.0-alpha.1
-  resolution: "@jujulego/jill@npm:2.1.0-alpha.1"
+"@jujulego/jill@npm:2.1.0-alpha.2":
+  version: 2.1.0-alpha.2
+  resolution: "@jujulego/jill@npm:2.1.0-alpha.2"
   dependencies:
     "@jujulego/event-tree": ^1.1.0
     "@jujulego/tasks": ^1.1.2
@@ -894,7 +894,7 @@ __metadata:
     yargs: ^17.6.0
   bin:
     jill: ./bin/jill.js
-  checksum: bf744997b559c413ff3019b8f98cb1b3dc371b255e0f542c6ec7f57166cde38bea627e83cb3910ca9d66bece938dc180ebc68530c35bdbdd23a201e8925dd138
+  checksum: 83e91c4608dfe03ca7e570eda28a94feae970b525b6eca979dc0d14ddd9ed6c669fbc931422ad5495491592161667095fe46ce71a50f2ec88f41ecf20584779a
   languageName: node
   linkType: hard
 

@@ -1,4 +1,6 @@
 // Types
+import { IMatrix } from './matrix';
+
 export interface IVector {
   dx: number;
   dy: number;
@@ -48,12 +50,20 @@ export class Vector implements IVector {
     return new Vector({ dx: this.dx - v.dx, dy: this.dy - v.dy });
   }
 
-  dot(v: IVector): number {
-    return this.dx * v.dx + this.dy * v.dy;
-  }
-
-  mul(k: number): Vector {
-    return new Vector({ dx: this.dx * k, dy: this.dy * k });
+  dot(k: number): Vector;
+  dot(v: IVector): number;
+  dot(v: IMatrix): Vector;
+  dot(arg: number | IVector | IMatrix) {
+    if (typeof arg === 'number') {
+      return new Vector({ dx: this.dx * arg, dy: this.dy * arg });
+    } else if ('dx' in arg) {
+      return this.dx * arg.dx + this.dy * arg.dy;
+    } else {
+      return new Vector({
+        dx: this.dx * arg.a + this.dy * arg.c,
+        dy: this.dx * arg.b + this.dy * arg.d,
+      });
+    }
   }
 
   div(k: number): Vector {

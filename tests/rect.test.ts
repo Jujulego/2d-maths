@@ -24,6 +24,43 @@ describe('rect', () => {
   });
 });
 
+// Statics
+describe('Rect.from', () => {
+  it('should build from tlrb holder (top left right bottom)', () => {
+    const dom = {
+      screenTop: 10,
+      screenLeft: 0,
+      screenRight: 10,
+      screenBottom: 0,
+    };
+
+    expect(Rect.from('screen', dom))
+      .toEqual({
+        t: 10,
+        l: 0,
+        r: 10,
+        b: 0
+      });
+  });
+
+  it('should build from tlwh holder (top left width height)', () => {
+    const dom = {
+      screenTop: 10,
+      screenLeft: 0,
+      screenWidth: 10,
+      screenHeight: 10,
+    };
+
+    expect(Rect.from('screen', dom))
+      .toEqual({
+        t: 10,
+        l: 0,
+        r: 10,
+        b: 0
+      });
+  });
+});
+
 // Methods
 describe('Rect.equals', () => {
   it('should return true', () => {
@@ -42,18 +79,36 @@ describe('Rect.equals', () => {
 });
 
 describe('Rect.contains', () => {
-  it('should return true', () => {
-    const r = rect({ t: 1, l: 0, r: 1, b: 0 });
+  describe('a Point', () => {
+    it('should return true', () => {
+      const r = rect({ t: 1, l: 0, r: 1, b: 0 });
 
-    expect(r.contains({ x: 0.5, y: 0.5 }))
-      .toBe(true);
+      expect(r.contains({ x: 0.5, y: 0.5 }))
+        .toBe(true);
+    });
+
+    it('should return false', () => {
+      const r = rect({ t: 1, l: 0, r: 1, b: 0 });
+
+      expect(r.contains({ x: 1.5, y: 0.5 }))
+        .toBe(false);
+    });
   });
 
-  it('should return false', () => {
-    const r = rect({ t: 1, l: 0, r: 1, b: 0 });
+  describe('a Rect', () => {
+    it('should return true', () => {
+      const r = rect({ t: 1, l: 0, r: 1, b: 0 });
 
-    expect(r.contains({ x: 1.5, y: 0.5 }))
-      .toBe(false);
+      expect(r.contains({ t: 0.75, l: 0.25, r: 0.75, b: 0.25 }))
+        .toBe(true);
+    });
+
+    it('should return false', () => {
+      const r = rect({ t: 1, l: 0, r: 1, b: 0 });
+
+      expect(r.contains({ t: 1.75, l: 0.25, r: 0.75, b: 0.25 }))
+        .toBe(false);
+    });
   });
 });
 

@@ -1,5 +1,5 @@
-import { IVector, Vector } from './vector';
 import { IPoint, Point } from './point';
+import { IVector, Vector } from './vector';
 
 // Types
 export interface IMatrix {

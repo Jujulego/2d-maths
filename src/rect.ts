@@ -122,17 +122,17 @@ export function rect(...args: [IRect] | [IPoint, IPoint] | [IPoint, IVector]): R
 
   if ('dx' in b) { // => b is a vector
     return new Rect({
-      t: Math.max(a.x, a.x + b.dx),
-      l: Math.min(a.y, a.y + b.dy),
-      r: Math.max(a.y, a.y + b.dy),
-      b: Math.min(a.x, a.x + b.dx),
+      t: Math.max(a.y, a.y + b.dy),
+      l: Math.min(a.x, a.x + b.dx),
+      r: Math.max(a.x, a.x + b.dx),
+      b: Math.min(a.y, a.y + b.dy),
     });
   } else { // => b is a point
     return new Rect({
-      t: Math.max(a.x, b.x),
-      l: Math.min(a.y, b.y),
-      r: Math.max(a.y, b.y),
-      b: Math.min(a.x, b.x),
+      t: Math.max(a.y, b.y),
+      l: Math.min(a.x, b.x),
+      r: Math.max(a.x, b.x),
+      b: Math.min(a.y, b.y),
     });
   }
 }

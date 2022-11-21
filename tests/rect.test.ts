@@ -10,17 +10,17 @@ describe('rect', () => {
   });
 
   it('should build a Rect from two points', () => {
-    const r = rect(point(1, 0), point(0, 1));
+    const r = rect(point(1, 0), point(0, 2));
 
     expect(r).toBeInstanceOf(Rect);
-    expect(r).toEqual({ t: 1, l: 0, r: 1, b: 0 });
+    expect(r).toEqual({ t: 2, l: 0, r: 1, b: 0 });
   });
 
   it('should build a Rect from a point and a vector', () => {
-    const r = rect(point(0, 0), vector(1, 1));
+    const r = rect(point(0, 0), vector(2, 1));
 
     expect(r).toBeInstanceOf(Rect);
-    expect(r).toEqual({ t: 1, l: 0, r: 1, b: 0 });
+    expect(r).toEqual({ t: 1, l: 0, r: 2, b: 0 });
   });
 });
 
@@ -87,10 +87,17 @@ describe('Rect.contains', () => {
         .toBe(true);
     });
 
-    it('should return false', () => {
+    it('should return false (x > t)', () => {
       const r = rect({ t: 1, l: 0, r: 1, b: 0 });
 
       expect(r.contains({ x: 1.5, y: 0.5 }))
+        .toBe(false);
+    });
+
+    it('should return false (y > r)', () => {
+      const r = rect({ t: 1, l: 0, r: 1, b: 0 });
+
+      expect(r.contains({ x: 0.5, y: 1.5 }))
         .toBe(false);
     });
   });

@@ -1,4 +1,5 @@
 import { IVector, Vector } from './vector';
+import { IMatrix } from './matrix';
 
 // Types
 export interface IPoint {
@@ -55,6 +56,13 @@ export class Point implements IPoint {
 
   sub(p: IPoint): Vector {
     return new Vector({ dx: this.x - p.x, dy: this.y - p.y });
+  }
+
+  dot(m: IMatrix): Point {
+    return new Point({
+      x: this.x * m.a + this.y * m.c,
+      y: this.x * m.b + this.y * m.d,
+    });
   }
 
   // Properties

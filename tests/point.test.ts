@@ -86,6 +86,18 @@ describe('Point.sub', () => {
   });
 });
 
+describe('Point.dot', () => {
+  it('should return product with a matrix', () => {
+    const a = point(1, 2);
+
+    expect(a.dot({ a: 1, b: 2, c: 3, d: 4 }))
+      .toEqual({
+        x: 7,
+        y: 10
+      });
+  });
+});
+
 // Properties
 describe('Point.isOrigin', () => {
   it('should return true for origin', () => {

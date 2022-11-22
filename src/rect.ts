@@ -64,7 +64,7 @@ export class Rect implements IRect {
   contains(p: IPoint): boolean;
   contains(arg: IPoint | IRect): boolean {
     if ('x' in arg) {
-      return this.t >= arg.y && this.l <= arg.x && this.r >= arg.x && this.b <= arg.y;
+      return this.l <= arg.x && this.r > arg.x && this.b <= arg.y && this.t > arg.y;
     } else {
       return arg.t <= this.t && arg.t >= this.b
         && arg.l <= this.r && arg.l >= this.l

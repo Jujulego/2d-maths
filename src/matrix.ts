@@ -35,13 +35,13 @@ export class Matrix implements IMatrix {
 
   // Statics
   static readonly Zero = new Matrix({
-    a: 0,  c:  0,
-    b: 0,  d:  0,
+    a: 0, c: 0,
+    b: 0, d: 0,
     tx: 0, ty: 0,
   });
   static readonly Identity = new Matrix({
-    a:  1, c:  0,
-    b:  0, d:  1,
+    a: 1, c: 0,
+    b: 0, d: 1,
     tx: 0, ty: 0,
   });
 
@@ -62,16 +62,16 @@ export class Matrix implements IMatrix {
 
   add(m: IMatrix): Matrix {
     return new Matrix({
-       a: this.a  + m.a,   c: this.c  + m.c,
-       b: this.b  + m.b,   d: this.d  + m.d,
+      a: this.a + m.a, c: this.c + m.c,
+      b: this.b + m.b, d: this.d + m.d,
       tx: this.tx + m.tx, ty: this.ty + m.ty,
     });
   }
 
   sub(m: IMatrix): Matrix {
     return new Matrix({
-       a: this.a  - m.a,   c: this.c  - m.c,
-       b: this.b  - m.b,   d: this.d  - m.d,
+      a: this.a - m.a, c: this.c - m.c,
+      b: this.b - m.b, d: this.d - m.d,
       tx: this.tx - m.tx, ty: this.ty - m.ty,
     });
   }
@@ -83,8 +83,8 @@ export class Matrix implements IMatrix {
   dot(arg: number | IPoint | IVector | IMatrix) {
     if (typeof arg === 'number') {
       return new Matrix({
-         a: this.a  * arg,  c: this.c  * arg,
-         b: this.b  * arg,  d: this.d  * arg,
+        a: this.a * arg, c: this.c * arg,
+        b: this.b * arg, d: this.d * arg,
         tx: this.tx * arg, ty: this.ty * arg,
       });
     } else if ('x' in arg) {
@@ -99,8 +99,8 @@ export class Matrix implements IMatrix {
       });
     } else {
       return new Matrix({
-         a: this.a  * arg.a + this.c  * arg.b,           c: this.a  * arg.c + this.c  * arg.d,
-         b: this.b  * arg.a + this.d  * arg.b,           d: this.b  * arg.c + this.d  * arg.d,
+        a: this.a * arg.a + this.c * arg.b, c: this.a * arg.c + this.c * arg.d,
+        b: this.b * arg.a + this.d * arg.b, d: this.b * arg.c + this.d * arg.d,
         tx: this.tx * arg.a + this.ty * arg.b + arg.tx, ty: this.tx * arg.c + this.ty * arg.d + arg.ty,
       });
     }
@@ -109,14 +109,15 @@ export class Matrix implements IMatrix {
 
 // Utils
 export function matrix(m: IMatrix): Matrix;
-export function matrix(m: Omit<IMatrix, 'tx' | 'ty'>): Matrix;
-export function matrix(m: IMatrix | Omit<IMatrix, 'tx' | 'ty'>): Matrix {
-  if (!('tx' in m)) {
-    m = {
-      ...m,
-      tx: 0, ty: 0
-    };
+export function matrix(a: number, c: number, b: number, d: number): Matrix;
+export function matrix(a: number, c: number, b: number, d: number, tx: number, ty: number): Matrix;
+export function matrix(...args: [IMatrix] | [number, number, number, number] | [number, number, number, number, number, number]): Matrix {
+  if (args.length === 1) {
+    return new Matrix(args[0]);
   }
 
-  return new Matrix(m);
+  // Parse numbers
+  const [a, c, b, d, tx = 0, ty = 0] = args;
+
+  return new Matrix({ a, c, b, d, tx, ty });
 }

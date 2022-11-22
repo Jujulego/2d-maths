@@ -99,10 +99,10 @@ describe('Vector.dot', () => {
     it('should return product with a matrix', () => {
       const v = vector(1, 2);
 
-      expect(v.dot({ a: 1, b: 2, c: 3, d: 4 }))
+      expect(v.dot({ a: 1, c: 2, b: 3, d: 4, tx: 5, ty: 6 }))
         .toEqual({
-          dx: 7,
-          dy: 10
+          dx: 12,
+          dy: 16
         });
     });
   });

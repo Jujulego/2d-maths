@@ -87,17 +87,31 @@ describe('Rect.contains', () => {
         .toBe(true);
     });
 
-    it('should return false (x > t)', () => {
+    it('should return false (x >= r)', () => {
       const r = rect({ t: 1, l: 0, r: 1, b: 0 });
 
-      expect(r.contains({ x: 1.5, y: 0.5 }))
+      expect(r.contains({ x: 1, y: 0.5 }))
         .toBe(false);
     });
 
-    it('should return false (y > r)', () => {
+    it('should return false (x < l)', () => {
       const r = rect({ t: 1, l: 0, r: 1, b: 0 });
 
-      expect(r.contains({ x: 0.5, y: 1.5 }))
+      expect(r.contains({ x: -0.5, y: 0.5 }))
+        .toBe(false);
+    });
+
+    it('should return false (y >= t)', () => {
+      const r = rect({ t: 1, l: 0, r: 1, b: 0 });
+
+      expect(r.contains({ x: 0.5, y: 1 }))
+        .toBe(false);
+    });
+
+    it('should return false (y < b)', () => {
+      const r = rect({ t: 1, l: 0, r: 1, b: 0 });
+
+      expect(r.contains({ x: 0.5, y: -0.5 }))
         .toBe(false);
     });
   });

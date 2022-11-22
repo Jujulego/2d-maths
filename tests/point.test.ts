@@ -90,10 +90,10 @@ describe('Point.dot', () => {
   it('should return product with a matrix', () => {
     const a = point(1, 2);
 
-    expect(a.dot({ a: 1, b: 2, c: 3, d: 4 }))
+    expect(a.dot({ a: 1, c: 2, b: 3, d: 4, tx: 5, ty: 6 }))
       .toEqual({
-        x: 7,
-        y: 10
+        x: 12,
+        y: 16
       });
   });
 });

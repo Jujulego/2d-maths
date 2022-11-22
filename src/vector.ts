@@ -60,8 +60,8 @@ export class Vector implements IVector {
       return this.dx * arg.dx + this.dy * arg.dy;
     } else {
       return new Vector({
-        dx: this.dx * arg.a + this.dy * arg.c,
-        dy: this.dx * arg.b + this.dy * arg.d,
+        dx: this.dx * arg.a + this.dy * arg.b + arg.tx,
+        dy: this.dx * arg.c + this.dy * arg.d + arg.ty,
       });
     }
   }

@@ -60,8 +60,8 @@ export class Point implements IPoint {
 
   dot(m: IMatrix): Point {
     return new Point({
-      x: this.x * m.a + this.y * m.c,
-      y: this.x * m.b + this.y * m.d,
+      x: this.x * m.a + this.y * m.b + m.tx,
+      y: this.x * m.c + this.y * m.d + m.ty,
     });
   }
 

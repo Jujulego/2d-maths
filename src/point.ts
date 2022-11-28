@@ -1,13 +1,12 @@
-import { IVector, Vector } from './vector';
-import { IMatrix } from './matrix';
+import { type IVector, Vector } from './vector';
+import { type IMatrix } from './matrix';
+import { type OrderMode } from './types';
 
 // Types
 export interface IPoint {
   x: number;
   y: number;
 }
-
-export type PointOrderMode = 'xy' | 'yx';
 
 export type PointHolderAttr<N extends string> = `${N}${'X' | 'Y'}`;
 export type PointHolder<N extends string> = Record<PointHolderAttr<N>, number>;
@@ -25,7 +24,7 @@ export class Point implements IPoint {
     return new Point({ x: holder[`${prefix}X`], y: holder[`${prefix}Y`] });
   }
 
-  static comparator(order: PointOrderMode = 'xy'): (a: IPoint, b: IPoint) => number {
+  static comparator(order: OrderMode = 'xy'): (a: IPoint, b: IPoint) => number {
     if (order === 'xy') {
       return (a, b) => {
         const d = new Point(a).sub(b);

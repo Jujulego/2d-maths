@@ -1,5 +1,5 @@
-import { IPoint, Point } from './point';
-import { IVector, Vector } from './vector';
+import { type IPoint, Point } from './point';
+import { type IVector, Vector } from './vector';
 
 // Types
 /**

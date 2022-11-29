@@ -1,13 +1,16 @@
-import { IPoint, IShape, pointsOf, Rect } from '../src';
+import { IPoint, Shape, pointsOf, Rect } from '../src';
 
 // Utils
-const shape: IShape = {
-  bbox: new Rect({
+const shape = new class extends Shape {
+  // Attributes
+  readonly bbox = new Rect({
     t: 3,
     l: 0,
     b: 0,
     r: 3
-  }),
+  });
+
+  // Methods
   contains(p: IPoint): boolean {
     return 0 <= p.x && p.x < 3 && 0 <= p.y && p.y < 3 && p.x <= p.y;
   }

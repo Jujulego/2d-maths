@@ -1,5 +1,5 @@
 import { type IPoint, Point } from './point';
-import { type IShape } from './shape';
+import { Shape } from './shape';
 import { Rect } from './rect';
 
 // Types
@@ -10,7 +10,7 @@ export interface IDisk {
 }
 
 // Class
-export class Disk implements IShape, IDisk {
+export class Disk extends Shape implements IDisk {
   // Attributes
   cx: number;
   cy: number;
@@ -18,6 +18,8 @@ export class Disk implements IShape, IDisk {
 
   // Constructor
   constructor(d: IDisk) {
+    super();
+
     this.cx = d.cx;
     this.cy = d.cy;
     this.r = d.r;

@@ -9,16 +9,16 @@ export interface PointsOfOpts {
   readonly order?: OrderMode;
 }
 
-export interface IShape {
+export abstract class Shape {
   // Attributes
-  readonly bbox: Rect;
+  abstract readonly bbox: Rect;
 
   // Methods
-  contains(p: IPoint, precision?: IVector): boolean;
+  abstract contains(p: IPoint, precision?: IVector): boolean;
 }
 
 // Utils
-export function *pointsOf(shape: IShape, opts: PointsOfOpts = {}): Generator<Point> {
+export function *pointsOf(shape: Shape, opts: PointsOfOpts = {}): Generator<Point> {
   const { step = vector(1, 1), order = 'xy' } = opts;
   const bbox = shape.bbox;
 

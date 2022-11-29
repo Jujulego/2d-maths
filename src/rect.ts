@@ -1,5 +1,5 @@
 import { type IPoint, Point } from './point';
-import { type IShape } from './shape';
+import { Shape } from './shape';
 import { type IVector, Vector } from './vector';
 
 // Types
@@ -24,7 +24,7 @@ export function isRectTLRBHolder<N extends string>(prefix: N, holder: RectHolder
 }
 
 // Class
-export class Rect implements IShape, IRect {
+export class Rect extends Shape implements IRect {
   // Attributes
   t: number;
   l: number;
@@ -50,6 +50,8 @@ export class Rect implements IShape, IRect {
 
   // Constructor
   constructor(r: IRect) {
+    super();
+
     this.t = r.t;
     this.l = r.l;
     this.r = r.r;

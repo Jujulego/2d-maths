@@ -1,12 +1,11 @@
-// Types
-import { IMatrix } from './matrix';
+import { type IMatrix } from './matrix';
+import { type OrderMode } from './types';
 
+// Types
 export interface IVector {
   dx: number;
   dy: number;
 }
-
-export type VectorOrderMode = 'xy' | 'yx';
 
 // Class
 export class Vector implements IVector {
@@ -17,7 +16,7 @@ export class Vector implements IVector {
   // Statics
   static readonly Null = new Vector({ dx: 0, dy: 0 });
 
-  static comparator(order: VectorOrderMode = 'xy'): (a: IVector, b: IVector) => number {
+  static comparator(order: OrderMode = 'xy'): (a: IVector, b: IVector) => number {
     if (order === 'xy') {
       return (a, b) => {
         const d = new Vector(a).sub(b);
@@ -75,8 +74,12 @@ export class Vector implements IVector {
     return this.dx === 0 && this.dy === 0;
   }
 
+  get squareNorm(): number {
+    return this.dx * this.dx + this.dy * this.dy;
+  }
+
   get norm(): number {
-    return Math.sqrt(this.dx * this.dx + this.dy * this.dy);
+    return Math.sqrt(this.squareNorm);
   }
 
   get manhattan(): number {

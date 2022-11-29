@@ -203,7 +203,22 @@ test('Rect.bl', () => {
   expect(r.bl).toEqual({ x: 0, y: 0 });
 });
 
+test('Rect.w', () => {
+  const r = rect({ t: 1, l: 0, r: 1, b: 0 });
+  expect(r.w).toBe(1);
+});
+
+test('Rect.h', () => {
+  const r = rect({ t: 1, l: 0, r: 1, b: 0 });
+  expect(r.h).toBe(1);
+});
+
 test('Rect.size', () => {
   const r = rect({ t: 1, l: 0, r: 1, b: 0 });
   expect(r.size).toEqual({ dx: 1, dy: 1 });
+});
+
+test('Rect.bbox', () => {
+  const r = rect({ t: 1, l: 0, r: 1, b: 0 });
+  expect(r.bbox).toEqual({ t: 1, l: 0, r: 1, b: 0 });
 });

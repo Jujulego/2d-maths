@@ -1,5 +1,6 @@
-import { IPoint, point, Point } from './point';
-import { IVector, vector, Vector } from './vector';
+import { type IPoint, Point } from './point';
+import { type IShape } from './shape';
+import { type IVector, Vector } from './vector';
 
 // Types
 export interface IRect {
@@ -23,7 +24,7 @@ export function isRectTLRBHolder<N extends string>(prefix: N, holder: RectHolder
 }
 
 // Class
-export class Rect implements IRect {
+export class Rect implements IShape, IRect {
   // Attributes
   t: number;
   l: number;
@@ -41,8 +42,8 @@ export class Rect implements IRect {
       });
     } else {
       return rect(
-        point(holder[`${prefix}Left`], holder[`${prefix}Top`]),
-        vector(holder[`${prefix}Width`], -holder[`${prefix}Height`])
+        { x: holder[`${prefix}Left`], y: holder[`${prefix}Top`] },
+        { dx: holder[`${prefix}Width`], dy: -holder[`${prefix}Height`] },
       );
     }
   }
@@ -104,8 +105,20 @@ export class Rect implements IRect {
     return new Point({ x: this.l, y: this.b });
   }
 
+  get w(): number {
+    return this.r - this.l;
+  }
+
+  get h(): number {
+    return this.t - this.b;
+  }
+
   get size(): Vector {
-    return new Vector({ dx: this.r - this.l, dy: this.t - this.b });
+    return new Vector({ dx: this.w, dy: this.h });
+  }
+
+  get bbox(): Rect {
+    return this;
   }
 }
 

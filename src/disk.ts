@@ -1,7 +1,6 @@
 import { type IPoint, Point } from './point';
 import { type IShape } from './shape';
 import { Rect } from './rect';
-import { Vector } from './vector';
 
 // Types
 export interface IDisk {
@@ -31,7 +30,7 @@ export class Disk implements IShape, IDisk {
 
   contains(p: IPoint, precision = { dx: 0, dy: 0 }): boolean {
     const { dx: pdx, dy: pdy } = precision;
-    return this.center.sub(p).norm <= Math.sqrt(this.r + pdx * pdx + pdy * pdy);
+    return this.center.sub(p).squareNorm <= this.r * this.r + pdx * pdx + pdy * pdy;
   }
 
   // Properties

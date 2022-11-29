@@ -74,8 +74,12 @@ export class Vector implements IVector {
     return this.dx === 0 && this.dy === 0;
   }
 
+  get squareNorm(): number {
+    return this.dx * this.dx + this.dy * this.dy;
+  }
+
   get norm(): number {
-    return Math.sqrt(this.dx * this.dx + this.dy * this.dy);
+    return Math.sqrt(this.squareNorm);
   }
 
   get manhattan(): number {

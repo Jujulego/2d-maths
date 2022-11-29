@@ -130,6 +130,14 @@ describe('Vector.isNull', () => {
   });
 });
 
+describe('Vector.squareNorm', () => {
+  it('should return squared norm of vector', () => {
+    const v = vector(1, 2);
+
+    expect(v.squareNorm).toBe(5);
+  });
+});
+
 describe('Vector.norm', () => {
   it('should return norm of vector', () => {
     const v = vector(1, 2);

@@ -1,6 +1,6 @@
-import { type IPoint, point, Point } from './point';
+import { type IPoint, Point } from './point';
 import { type IShape } from './shape';
-import { type IVector, vector, Vector } from './vector';
+import { type IVector, Vector } from './vector';
 
 // Types
 export interface IRect {
@@ -42,8 +42,8 @@ export class Rect implements IShape, IRect {
       });
     } else {
       return rect(
-        point(holder[`${prefix}Left`], holder[`${prefix}Top`]),
-        vector(holder[`${prefix}Width`], -holder[`${prefix}Height`])
+        { x: holder[`${prefix}Left`], y: holder[`${prefix}Top`] },
+        { dx: holder[`${prefix}Width`], dy: -holder[`${prefix}Height`] },
       );
     }
   }

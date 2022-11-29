@@ -14,7 +14,7 @@ export interface IShape {
   readonly bbox: Rect;
 
   // Methods
-  contains(p: IPoint): boolean;
+  contains(p: IPoint, precision?: IVector): boolean;
 }
 
 // Utils
@@ -25,7 +25,7 @@ export function *pointsOf(shape: IShape, opts: PointsOfOpts = {}): Generator<Poi
   if (order === 'xy') {
     for (let x = bbox.l; x < bbox.r; x += step.dx) {
       for (let y = bbox.b; y < bbox.t; y += step.dy) {
-        if (shape.contains({ x, y })) {
+        if (shape.contains({ x, y }, step)) {
           yield point(x, y);
         }
       }
@@ -33,7 +33,7 @@ export function *pointsOf(shape: IShape, opts: PointsOfOpts = {}): Generator<Poi
   } else {
     for (let y = bbox.b; y < bbox.t; y += step.dy) {
       for (let x = bbox.l; x < bbox.r; x += step.dx) {
-        if (shape.contains({ x, y })) {
+        if (shape.contains({ x, y }, step)) {
           yield point(x, y);
         }
       }

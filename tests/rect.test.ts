@@ -1,6 +1,16 @@
-import { point, Rect, rect, vector } from '../src';
+import { isRect, point, Rect, rect, vector } from '../src';
 
 // Utils
+describe('isRect', () => {
+  it('should return true for a rect object', () => {
+    expect(isRect({ t: 1, l: 0, r: 1, b: 0 })).toBe(true);
+  });
+
+  it('should return false for something else', () => {
+    expect(isRect({ x: 1, y: 2 })).toBe(false);
+  });
+});
+
 describe('rect', () => {
   it('should build a Rect from an object', () => {
     const r = rect({ t: 1, l: 0, r: 1, b: 0 });

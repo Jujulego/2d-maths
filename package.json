@@ -35,7 +35,7 @@
   "packageManager": "yarn@3.3.1",
   "devDependencies": {
     "@jujulego/jill": "2.1.0-alpha.4",
-    "@swc/cli": "0.1.57",
+    "@swc/cli": "0.1.59",
     "@swc/core": "1.3.24",
     "@swc/jest": "0.2.24",
     "@types/jest": "29.2.4",

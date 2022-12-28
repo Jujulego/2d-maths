@@ -84,6 +84,13 @@ describe('Point.sub', () => {
     expect(a.sub(/* b */ { x: 3, y: 4 }))
       .toEqual({ dx: -2, dy: -2 });
   });
+
+  it('should return new point moved backward a vector', () => {
+    const p = point(1, 2);
+
+    expect(p.sub({ dx: 3, dy: 4 }))
+      .toEqual({ x: -2, y: -2 });
+  });
 });
 
 describe('Point.dot', () => {

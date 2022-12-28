@@ -53,8 +53,14 @@ export class Point implements IPoint {
     return new Point({ x: this.x + v.dx, y: this.y + v.dy });
   }
 
-  sub(p: IPoint): Vector {
-    return new Vector({ dx: this.x - p.x, dy: this.y - p.y });
+  sub(p: IPoint): Vector;
+  sub(v: IVector): Point;
+  sub(arg: IPoint | IVector) {
+    if ('x' in arg) {
+      return new Vector({ dx: this.x - arg.x, dy: this.y - arg.y });
+    } else {
+      return new Point({ x: this.x - arg.dx, y: this.y - arg.dy });
+    }
   }
 
   dot(m: IMatrix): Point {

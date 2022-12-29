@@ -1,4 +1,4 @@
-import { IPoint, Shape, pointsOf, Rect, isShape, shape, Disk } from '../src';
+import { Disk, type IPoint, isShape, pointsOf, Rect, shape, Shape } from '../src';
 
 // Utils
 const area = new class extends Shape {

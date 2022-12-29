@@ -1,6 +1,16 @@
-import { Matrix, matrix } from '../src';
+import { isMatrix, Matrix, matrix } from '../src';
 
 // Utils
+describe('isMatrix', () => {
+  it('should return true for a matrix object', () => {
+    expect(isMatrix({ a: 1, c: 2, b: 3, d: 4, tx: 5, ty: 6 })).toBe(true);
+  });
+
+  it('should return false for something else', () => {
+    expect(isMatrix({ x: 1, y: 2 })).toBe(false);
+  });
+});
+
 describe('matrix', () => {
   it('should build a Matrix from an object', () => {
     const m = matrix({

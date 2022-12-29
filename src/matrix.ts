@@ -1,13 +1,8 @@
 import { type IPoint, Point } from './point';
+import { isObject } from './utils';
 import { type IVector, Vector } from './vector';
 
 // Types
-/**
- * 3x3 matrix for any transformation in 2d plan
- *  [ a  c  0]
- *  [ b  d  0]
- *  [tx ty  1]
- */
 export interface IMatrix {
   a: number;
   b: number;
@@ -108,6 +103,16 @@ export class Matrix implements IMatrix {
 }
 
 // Utils
+/**
+ * Returns true if object is a matrix object
+ * @see IMatrix
+ *
+ * @param obj
+ */
+export function isMatrix(obj: unknown): obj is IMatrix {
+  return isObject(obj) && 'a' in obj;
+}
+
 export function matrix(m: IMatrix): Matrix;
 export function matrix(a: number, c: number, b: number, d: number): Matrix;
 export function matrix(a: number, c: number, b: number, d: number, tx: number, ty: number): Matrix;

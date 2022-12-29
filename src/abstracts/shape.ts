@@ -1,6 +1,6 @@
+import { type IPoint } from '../point';
 import { Rect } from '../rect';
-import { IPoint } from '../point';
-import { IVector } from '../vector';
+import { type IVector } from '../vector';
 
 // Class
 export abstract class Shape {

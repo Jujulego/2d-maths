@@ -1,6 +1,7 @@
-import { type IVector, Vector } from './vector';
 import { type IMatrix } from './matrix';
 import { type OrderMode } from './types';
+import { isObject } from './utils';
+import { type IVector, Vector } from './vector';
 
 // Types
 export interface IPoint {
@@ -77,6 +78,16 @@ export class Point implements IPoint {
 }
 
 // Utils
+/**
+ * Returns true if object is a point object
+ * @see IPoint
+ *
+ * @param obj
+ */
+export function isPoint(obj: unknown): obj is IPoint {
+  return isObject(obj) && 'x' in obj;
+}
+
 export function point(p: IPoint): Point;
 export function point(x: number, y: number): Point;
 export function point(...args: [IPoint] | [number, number]): Point {

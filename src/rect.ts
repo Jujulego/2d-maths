@@ -1,5 +1,6 @@
+import { Shape } from './abstracts/shape';
 import { type IPoint, Point } from './point';
-import { Shape } from './shape';
+import { isObject } from './utils';
 import { type IVector, Vector } from './vector';
 
 // Types
@@ -17,11 +18,6 @@ export type RectTLBRHolder<N extends string> = Record<RectTLRBHolderAttr<N>, num
 export type RectTLWHHolder<N extends string> = Record<RectTLWHHolderAttr<N>, number>;
 
 export type RectHolder<N extends string> = RectTLBRHolder<N> | RectTLWHHolder<N>;
-
-// Utils
-export function isRectTLRBHolder<N extends string>(prefix: N, holder: RectHolder<N>): holder is RectTLBRHolder<N> {
-  return `${prefix}Bottom` in holder;
-}
 
 // Class
 export class Rect extends Shape implements IRect {
@@ -125,6 +121,14 @@ export class Rect extends Shape implements IRect {
 }
 
 // Utils
+export function isRectTLRBHolder<N extends string>(prefix: N, holder: RectHolder<N>): holder is RectTLBRHolder<N> {
+  return `${prefix}Bottom` in holder;
+}
+
+export function isRect(obj: unknown): obj is IRect {
+  return isObject(obj) && 't' in obj;
+}
+
 export function rect(r: IRect): Rect;
 export function rect(a: IPoint, b: IPoint): Rect;
 export function rect(a: IPoint, s: IVector): Rect;

@@ -1,6 +1,16 @@
-import { Disk, disk } from '../src';
+import { Disk, disk, isDisk } from '../src';
 
 // Utils
+describe('isDisk', () => {
+  it('should return true for a disk object', () => {
+    expect(isDisk({ cx: 1, cy: 2, r: 3 })).toBe(true);
+  });
+
+  it('should return false for something else', () => {
+    expect(isDisk({ x: 1, y: 2 })).toBe(false);
+  });
+});
+
 describe('disk', () => {
   it('should build a Disk from an object', () => {
     const d = disk({ cx: 1, cy: 2, r: 3 });

@@ -1,6 +1,16 @@
-import { point, Point } from '../src';
+import { isPoint, point, Point } from '../src';
 
 // Utils
+describe('isPoint', () => {
+  it('should return true for a point object', () => {
+    expect(isPoint({ x: 1, y: 2 })).toBe(true);
+  });
+
+  it('should return false for something else', () => {
+    expect(isPoint({ cx: 1, cy: 2, r: 3 })).toBe(false);
+  });
+});
+
 describe('point', () => {
   it('should build a Point from an object', () => {
     const p = point({ x: 1, y: 2 });

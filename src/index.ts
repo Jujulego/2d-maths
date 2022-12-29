@@ -1,3 +1,4 @@
+export * from './abstracts/shape';
 export * from './disk';
 export * from './matrix';
 export * from './point';

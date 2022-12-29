@@ -1,5 +1,6 @@
 import { type IMatrix } from './matrix';
 import { type OrderMode } from './types';
+import { isObject } from './utils';
 
 // Types
 export interface IVector {
@@ -108,6 +109,16 @@ export class Vector implements IVector {
 }
 
 // Utils
+/**
+ * Returns true if object is a vector object
+ * @see IVector
+ *
+ * @param obj
+ */
+export function isVector(obj: unknown): obj is IVector {
+  return isObject(obj) && 'dx' in obj;
+}
+
 export function vector(v: IVector): Vector;
 export function vector(dx: number, dy: number): Vector;
 export function vector(...args: [IVector] | [number, number]): Vector {

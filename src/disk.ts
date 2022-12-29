@@ -1,5 +1,5 @@
+import { Shape } from './abstracts/shape';
 import { type IPoint, Point } from './point';
-import { Shape } from './shape';
 import { Rect } from './rect';
 import { isObject } from './utils';
 

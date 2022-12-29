@@ -1,6 +1,16 @@
-import { vector, Vector } from '../src';
+import { isVector, vector, Vector } from '../src';
 
 // Utils
+describe('isVector', () => {
+  it('should return true for a vector object', () => {
+    expect(isVector({ dx: 1, dy: 2 })).toBe(true);
+  });
+
+  it('should return false for something else', () => {
+    expect(isVector({ x: 1, y: 2 })).toBe(false);
+  });
+});
+
 describe('vector', () => {
   it('should build a Vector from an object', () => {
     const v = vector({ dx: 1, dy: 2 });

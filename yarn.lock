@@ -827,7 +827,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@jujulego/2d-maths@workspace:."
   dependencies:
-    "@jujulego/jill": 2.1.0
+    "@jujulego/jill": 2.1.2
     "@swc/cli": 0.1.59
     "@swc/core": 1.3.24
     "@swc/jest": 0.2.24
@@ -844,12 +844,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@jujulego/jill@npm:2.1.0":
-  version: 2.1.0
-  resolution: "@jujulego/jill@npm:2.1.0"
+"@jujulego/jill@npm:2.1.2":
+  version: 2.1.2
+  resolution: "@jujulego/jill@npm:2.1.2"
   bin:
     jill: ./bin/jill.js
-  checksum: 74316b1a52025c76960de42a4fbe752b78a3cd1f1fd4c40b9ff52e51a80dcba689eb689ac8b69a9e2ff0acbee7378389e2d761535199b77ea37573fb73f05e2a
+  checksum: ea7ba19f030e8939c5070e121699118d675fb5f2ab98e23a8534383329ce2700ea741b803894ebdb3fd6712e64846f5fcbf89ff2dd730ef318276924978cd2ae
   languageName: node
   linkType: hard
 

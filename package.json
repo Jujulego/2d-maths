@@ -32,7 +32,7 @@
     "lint": "eslint .",
     "test": "jest"
   },
-  "packageManager": "yarn@3.4.1",
+  "packageManager": "yarn@3.5.0",
   "devDependencies": {
     "@jujulego/jill": "2.1.2",
     "@swc/cli": "0.1.61",
